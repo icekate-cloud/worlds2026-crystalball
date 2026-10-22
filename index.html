@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Worlds 2026 水晶球追蹤</title>
+<meta name="description" content="英雄聯盟 2026 世界賽 Pick'Ems 水晶球 18 題即時領先者，每 10 分鐘自動更新。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* 版面：頂部記分板 + 四組卡片網格（英雄 / 選手 / 賽事 / 隊伍）。色調取自召喚師盃的黃銅與深藍 */
+:root{
+  --bg:#f3f1ec; --surface:#fffdf8; --line:#ddd6c8; --fg:#1b1f2a; --muted:#666a75;
+  --accent:#9a6b12; --accent-soft:#f3e6c8; --good:#2f7d4f; --bar:#d8c28e;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0e121b; --surface:#161b27; --line:#2a3242; --fg:#ebe7dd; --muted:#9aa0ad;
+  --accent:#e0b45a; --accent-soft:#2d2716; --good:#6fc694; --bar:#6b5628; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--f-body);
+  padding:env(safe-area-inset-top,0) max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0) max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 48px}
+header h1{font-family:var(--f-display);font-weight:900;font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0;text-wrap:balance}
+header h1 span{color:var(--accent)}
+header p{margin:8px 0 0;color:var(--muted);max-width:62ch}
+.board{display:flex;flex-wrap:wrap;gap:10px 28px;margin:22px 0 10px;padding:14px 18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.board div{display:flex;flex-direction:column;min-width:0}
+.board b{font-family:var(--f-num);font-size:22px;font-variant-numeric:tabular-nums}
+.board small{color:var(--muted);font-size:12px;letter-spacing:.06em}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 4px}
+.controls label{display:flex;gap:6px;align-items:center;cursor:pointer;font-size:14px}
+button{font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+nav a{color:var(--fg);text-decoration:none;font-size:14px;padding:4px 12px;border-radius:999px;background:var(--accent-soft)}
+.status{color:var(--muted);font-size:13px;min-height:1.4em}
+.status.err{color:#c0392b}
+section{margin-top:34px}
+section h2{font-family:var(--f-display);font-size:22px;margin:0 0 12px;display:flex;align-items:baseline;gap:10px}
+section h2 small{font-family:var(--f-body);font-weight:400;font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-size:15.5px;font-weight:700;margin:0;line-height:1.45}
+.card .how{font-size:12.5px;color:var(--muted);margin:0}
+.chip{align-self:flex-start;font-size:11.5px;letter-spacing:.08em;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip.live{border-color:var(--accent);color:var(--accent)}
+.chip.done{border-color:var(--good);color:var(--good)}
+ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+li.row{display:grid;grid-template-columns:22px 28px 1fr auto;gap:8px;align-items:center;position:relative;padding:3px 6px;border-radius:6px;overflow:hidden}
+li.row .barbg{position:absolute;inset:0 auto 0 0;background:var(--accent-soft);z-index:0}
+li.row>*:not(.barbg){position:relative;z-index:1;min-width:0}
+li.row .rk{font-family:var(--f-num);color:var(--muted);font-size:13px;text-align:right}
+li.row img,li.row .ph{width:28px;height:28px;border-radius:5px;object-fit:cover;background:var(--line)}
+li.row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+li.row .nm small{color:var(--muted);margin-left:6px;font-size:12px}
+li.row .val{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-weight:600;font-size:14px}
+li.row:first-child .rk{color:var(--accent);font-weight:600}
+.big{font-family:var(--f-num);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.big small{font-size:14px;color:var(--muted);font-weight:500;margin-left:6px}
+.meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent)}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;text-align:center}
+.vs .big{font-size:26px}
+.vs .lab{font-size:13px;color:var(--muted)}
+.na{color:var(--muted);font-size:14px}
+details{margin-top:40px;border-top:1px solid var(--line);padding-top:18px}
+details summary{cursor:pointer;font-family:var(--f-display);font-size:20px}
+details h4{margin:16px 0 4px;font-size:15px}
+details p{margin:0;color:var(--muted);max-width:70ch}
+footer{margin-top:36px;font-size:12px;color:var(--muted);max-width:80ch}
+footer a{color:inherit}
+@media (prefers-reduced-motion:no-preference){.meter i,li.row .barbg{transition:width .5s ease}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Worlds 2026 <span>水晶球</span>追蹤</h1>
+  <p>Pick'Ems 水晶球 18 題，每題目前誰領先，打完一場就更新。數據來自 Leaguepedia，每 10 分鐘自動重新抓取。</p>
+</header>
+
+<div class="board" aria-live="polite">
+  <div><b id="sGames">–</b><small>已完成場次</small></div>
+  <div><b id="sChamps">–</b><small>出場英雄數</small></div>
+  <div><b id="sAvg">–</b><small>平均遊戲時長</small></div>
+  <div><b id="sStage">–</b><small>目前階段</small></div>
+</div>
+
+<div class="controls">
+  <label><input type="checkbox" id="incPlayin" checked> 計入入圍賽（Play-In）</label>
+  <button id="refresh" type="button">立即更新</button>
+  <span class="status" id="status">載入中…</span>
+</div>
+
+<nav aria-label="分類">
+  <a href="#champ">英雄</a><a href="#player">選手</a><a href="#event">賽事</a><a href="#team">隊伍</a><a href="#faq">常見問題</a>
+</nav>
+
+<section id="champ"><h2>英雄<small>選角、勝率與陣亡</small></h2><div class="grid" id="g-champ"></div></section>
+<section id="player"><h2>選手<small>KDA、傷害、參團與擊殺</small></h2><div class="grid" id="g-player"></div></section>
+<section id="event"><h2>賽事<small>整場世界賽的數字</small></h2><div class="grid" id="g-event"></div></section>
+<section id="team"><h2>隊伍<small>賽區與名次</small></h2><div class="grid" id="g-team"></div></section>
+
+<details id="faq">
+  <summary>常見問題</summary>
+  <h4>水晶球是什麼？</h4>
+  <p>Riot 在世界賽 Pick'Ems 旁邊附帶的預測遊戲，猜的是整個賽事的數據，例如誰的平均 KDA 最高、哪隻英雄勝率最高。越難猜的題目分數越高，正式規則請看 lolesports.com。</p>
+  <h4>數字怎麼算？</h4>
+  <p>KDA ＝（總擊殺＋總助攻）÷ 總陣亡，陣亡為 0 時以 1 計。參團率 ＝ 每場（擊殺＋助攻）÷ 隊伍總擊殺，再取平均。英雄登場率 ＝ 被選或被禁的場次 ÷ 總場次。勝率與場均陣亡只計入出場達門檻的英雄，避免出場一兩次就衝到第一。</p>
+  <h4>為什麼有些題目顯示「等待中」？</h4>
+  <p>像決賽 MVP、淘汰賽賽區數這類題目，要打到那個階段才有答案，時間到了會自動填上。</p>
+  <h4>多久更新一次？</h4>
+  <p>頁面開著時每 10 分鐘重抓一次。Leaguepedia 的數據由志工在賽後補上，所以可能會比直播慢一點。</p>
+  <h4>這是官方網站嗎？</h4>
+  <p>不是，這是粉絲自製工具，可能有錯，請以 Riot 官方公布為準。</p>
+</details>
+
+<footer>
+  粉絲自製專案，與 Riot Games 無關，亦未獲其認可。題目為 Riot Games 官方 Worlds 2026 水晶球題目之中文翻譯。比賽數據來自 <a href="https://lol.fandom.com" target="_blank" rel="noopener">Leaguepedia</a>（CC BY-SA）；英雄中文名稱與頭像來自 Riot Data Dragon。League of Legends 與 Riot Games 為 Riot Games, Inc. 之商標。
+</footer>
+</div>
+
+<script>
+"use strict";
+const API = "https://lol.fandom.com/api.php";
+const EVENT = "2026 Season World Championship";
+const KNOCKOUT_START = "2026-11-03";       // 淘汰賽開打日（UTC 日期即可）
+const FAKER_BASE = 616;                    // 2026 世界賽前生涯擊殺
+const MIN_CHAMP_PICKS = 5, MIN_PLAYER_GAMES = 3;
+const CACHE_KEY = "cb2026-cache-v2", REFRESH_MS = 10 * 60 * 1000;
+
+const REGION_ZH = {"Korea":"LCK 韓國","China":"LPL 中國","EMEA":"LEC 歐洲","Europe":"LEC 歐洲","North America":"LCS 北美",
+  "Asia Pacific":"LCP 亞太","Pacific":"LCP 亞太","PCS":"LCP 亞太","Vietnam":"VCS 越南","Japan":"LJL 日本","Brazil":"CBLOL 巴西",
+  "Latin America":"LTA 拉美","Americas":"LTA 美洲","LTA North":"LCS 北美","LTA South":"CBLOL 巴西"};
+const ROLE_ZH = {Top:"上路",Jungle:"打野",Mid:"中路",Bot:"下路",ADC:"下路",Support:"輔助"};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num = v => { const n = parseFloat(v); return isFinite(n) ? n : 0; };
+const fmt = (v, d = 1) => Number(v).toFixed(d);
+const pct = v => (v * 100).toFixed(1) + "%";
+
+/* ---------- 抓資料 ---------- */
+async function cargo(params) {
+  const out = [];
+  for (let offset = 0; offset < 5000; offset += 500) {
+    const u = new URL(API);
+    const p = {action:"cargoquery", format:"json", origin:"*", limit:"500", offset:String(offset), ...params};
+    for (const [k, v] of Object.entries(p)) u.searchParams.set(k, v);
+    const r = await fetch(u);
+    if (!r.ok) throw new Error("Leaguepedia 回應 " + r.status);
+    const j = await r.json();
+    if (j.error) throw new Error(j.error.info || j.error.code);
+    const rows = (j.cargoquery || []).map(x => x.title);
+    out.push(...rows);
+    if (rows.length < 500) break;
+  }
+  return out;
+}
+
+async function loadMatchData() {
+  // 不綁死頁面名稱：名稱含 World Championship / Worlds，且在 2026/10/1 之後
+  const where = `(OverviewPage LIKE "%World Championship%" OR OverviewPage LIKE "%Worlds%") AND OverviewPage LIKE "%2026%"`;
+  const games = await cargo({tables:"ScoreboardGames", where, order_by:"DateTime_UTC",
+    fields:"GameId=gid,OverviewPage=page,Team1=t1,Team2=t2,WinTeam=win,Gamelength=lenStr,Gamelength_Number=len,DateTime_UTC=date,Team1Bans=b1,Team2Bans=b2"});
+  let players;
+  try {
+    players = await cargo({tables:"ScoreboardPlayers", where,
+      fields:"GameId=gid,Link=link,Team=team,Champion=champ,Kills=k,Deaths=d,Assists=a,CS=cs,DamageToChampions=dmg,Role=role,PlayerWin=pw"});
+  } catch (e) { // 欄位名稱若有變動，退回最小欄位
+    players = await cargo({tables:"ScoreboardPlayers", where,
+      fields:"GameId=gid,Link=link,Team=team,Champion=champ,Kills=k,Deaths=d,Assists=a,CS=cs,PlayerWin=pw"});
+  }
+  const teamNames = [...new Set(games.flatMap(g => [g.t1, g.t2]).filter(Boolean))];
+  let regions = {};
+  if (teamNames.length) {
+    try {
+      const list = teamNames.map(n => `"${n.replace(/"/g, '\\"')}"`).join(",");
+      const rows = await cargo({tables:"Teams", fields:"Name=name,Region=region,Short=short", where:`Name IN (${list})`});
+      rows.forEach(r => regions[r.name] = {region:r.region, short:r.short});
+    } catch (e) { /* 賽區抓不到時，相關題目會顯示等待中 */ }
+  }
+  return {games, players, regions, fetchedAt: Date.now()};
+}
+
+async function loadChampNames() {
+  try {
+    const vers = await (await fetch("https://ddragon.leagueoflegends.com/api/versions.json")).json();
+    const v = vers[0];
+    const [en, zh] = await Promise.all(["en_US","zh_TW"].map(l =>
+      fetch(`https://ddragon.leagueoflegends.com/cdn/${v}/data/${l}/champion.json`).then(r => r.json())));
+    const map = {};
+    for (const id in en.data) {
+      const key = norm(en.data[id].name);
+      map[key] = {zh: zh.data[id]?.name || en.data[id].name, icon:`https://ddragon.leagueoflegends.com/cdn/${v}/img/champion/${id}.png`};
+      map[norm(id)] = map[key];
+    }
+    return map;
+  } catch (e) { return {}; }
+}
+const norm = s => String(s || "").toLowerCase().replace(/[^a-z]/g, "");
+
+/* ---------- 計算 ---------- */
+function compute(data, includePlayIn) {
+  const isPI = page => /play-?in/i.test(page || "");
+  const games = data.games.filter(g => g.win && (includePlayIn || !isPI(g.page)));
+  const gidSet = new Set(games.map(g => g.gid));
+  const players = data.players.filter(p => gidSet.has(p.gid));
+  const N = games.length;
+
+  // 隊伍每場擊殺（算參團率用）
+  const teamKills = {};
+  players.forEach(p => { const key = p.gid + "|" + p.team; teamKills[key] = (teamKills[key] || 0) + num(p.k); });
+
+  // 英雄
+  const ch = {};
+  const C = n => ch[n] || (ch[n] = {name:n, picks:0, bans:0, wins:0, deaths:0, games:new Set()});
+  players.forEach(p => { if (!p.champ) return; const c = C(p.champ); c.picks++; c.games.add(p.gid); c.deaths += num(p.d); if (p.pw === "Yes") c.wins++; });
+  games.forEach(g => [g.b1, g.b2].forEach(list => String(list || "").split(",").map(s => s.trim())
+    .filter(s => s && !/^(none|loss of ban)$/i.test(s)).forEach(b => { const c = C(b); c.bans++; c.games.add(g.gid); })));
+  const champs = Object.values(ch);
+
+  // 選手
+  const pl = {};
+  players.forEach(p => {
+    const o = pl[p.link] || (pl[p.link] = {name:p.link, team:p.team, role:p.role, g:0, k:0, d:0, a:0, dmg:0, kpSum:0, kpN:0});
+    o.g++; o.k += num(p.k); o.d += num(p.d); o.a += num(p.a); o.dmg += num(p.dmg); o.team = p.team;
+    const tk = teamKills[p.gid + "|" + p.team];
+    if (tk > 0) { o.kpSum += (num(p.k) + num(p.a)) / tk; o.kpN++; }
+  });
+  const pls = Object.values(pl).filter(p => p.g >= Math.min(MIN_PLAYER_GAMES, Math.max(1, N ? 1 : 0)) );
+  const qualified = pls.filter(p => p.g >= MIN_PLAYER_GAMES);
+  const pool = qualified.length ? qualified : pls;
+  const findP = n => Object.values(pl).filter(p => norm(p.name.split(" (")[0]) === norm(n))
+    .reduce((s, p) => ({k:s.k + p.k, g:s.g + p.g, team:p.team}), {k:0, g:0, team:""});
+
+  // 隊伍戰績（主賽事）
+  const rec = {};
+  games.filter(g => !isPI(g.page)).forEach(g => [g.t1, g.t2].forEach(t => {
+    const r = rec[t] || (rec[t] = {w:0, l:0}); g.win === t ? r.w++ : r.l++; }));
+
+  const koGames = data.games.filter(g => g.win && String(g.date) >= KNOCKOUT_START);
+  const koTeams = [...new Set(koGames.flatMap(g => [g.t1, g.t2]))];
+  const regionOf = t => data.regions[t]?.region;
+
+  const singleMax = key => players.reduce((b, p) => num(p[key]) > (b ? num(b[key]) : -1) ? p : b, null);
+  const shortest = games.reduce((b, g) => num(g.len) > 0 && (!b || num(g.len) < num(b.len)) ? g : b, null);
+  const champMin = Math.min(MIN_CHAMP_PICKS, Math.max(1, Math.ceil(N / 10)));
+
+  return {
+    N, champs, pool, rec, koTeams, regionOf, shortest, champMin,
+    presence: champs.map(c => ({name:c.name, v:N ? c.games.size / N : 0, sub:`選 ${c.picks}・禁 ${c.bans}`})).sort((a,b) => b.v - a.v),
+    winrate: champs.filter(c => c.picks >= champMin).map(c => ({name:c.name, v:c.wins / c.picks, sub:`${c.wins}勝 ${c.picks - c.wins}敗`})).sort((a,b) => b.v - a.v || b.picks - a.picks),
+    deaths: champs.filter(c => c.picks >= champMin).map(c => ({name:c.name, v:c.deaths / c.picks, sub:`${c.picks} 場`})).sort((a,b) => b.v - a.v),
+    kda: pool.map(p => ({name:p.name, team:p.team, v:(p.k + p.a) / Math.max(1, p.d), sub:`${p.k}/${p.d}/${p.a}`})).sort((a,b) => b.v - a.v),
+    dmg: pool.filter(p => p.dmg > 0).map(p => ({name:p.name, team:p.team, v:p.dmg / p.g, sub:`${p.g} 場`})).sort((a,b) => b.v - a.v),
+    kp: pool.filter(p => p.kpN).map(p => ({name:p.name, team:p.team, v:p.kpSum / p.kpN, sub:`${p.g} 場`})).sort((a,b) => b.v - a.v),
+    peyz: findP("Peyz"), guma: findP("Gumayusi"), faker: findP("Faker"),
+    teemo: champs.find(c => norm(c.name) === "teemo"),
+    unique: champs.filter(c => c.picks > 0).length,
+    under32: games.filter(g => num(g.len) > 0 && num(g.len) < 32).length,
+    over32: games.filter(g => num(g.len) >= 32).length,
+    avgLen: N ? games.reduce((s, g) => s + num(g.len), 0) / games.filter(g => num(g.len) > 0).length : 0,
+    maxK: singleMax("k"), maxCS: singleMax("cs"),
+    stage: koTeams.length ? "淘汰賽" : games.some(g => !isPI(g.page)) ? "瑞士輪" : data.games.length ? "入圍賽" : "尚未開打",
+  };
+}
+
+/* ---------- 畫面 ---------- */
+let CH = {};
+const champLabel = n => CH[norm(n)]?.zh || n;
+const icon = n => CH[norm(n)] ? `<img src="${CH[norm(n)].icon}" alt="" loading="lazy">` : `<span class="ph"></span>`;
+const teamShort = (t, data) => data.regions[t]?.short || t || "";
+const minSec = m => { const s = Math.round(m * 60); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; };
+
+function list(rows, {champ = false, show, data, n = 5}) {
+  if (!rows.length) return `<p class="na">還沒有資料</p>`;
+  const top = rows.slice(0, n), max = Math.max(...top.map(r => r.v)) || 1;
+  return `<ol>${top.map((r, i) => `<li class="row"><span class="barbg" style="width:${(r.v / max * 100).toFixed(1)}%"></span>
+    <span class="rk">${i + 1}</span>${champ ? icon(r.name) : `<span class="ph" aria-hidden="true" style="visibility:hidden"></span>`}
+    <span class="nm">${esc(champ ? champLabel(r.name) : r.name.split(" (")[0])}<small>${esc(champ ? r.sub : teamShort(r.team, data) + "・" + r.sub)}</small></span>
+    <span class="val">${show(r.v)}</span></li>`).join("")}</ol>`;
+}
+function card(q, how, body, state) {
+  const label = {live:"進行中", done:"已確定", wait:"等待中"}[state];
+  return `<article class="card"><span class="chip ${state}">${label}</span><h3>${q}</h3><p class="how">${how}</p>${body}</article>`;
+}
+const yesNo = (ok, yesTxt, noTxt) => `<div class="big">${ok ? yesTxt : noTxt}</div>`;
+
+function render(data) {
+  const R = compute(data, $("#incPlayin").checked);
+  const live = R.N ? "live" : "wait";
+  $("#sGames").textContent = R.N;
+  $("#sChamps").textContent = R.unique || "–";
+  $("#sAvg").textContent = R.avgLen ? minSec(R.avgLen) : "–";
+  $("#sStage").textContent = R.stage;
+
+  $("#g-champ").innerHTML = [
+    card("哪隻英雄的登場率（被選＋被禁）最高？", "登場率 ＝ 有被選或被禁的場次 ÷ 總場次", list(R.presence, {champ:true, show:pct, data}), live),
+    card("哪隻英雄的勝率最高？", `至少出場 ${R.champMin} 次才列入`, list(R.winrate, {champ:true, show:pct, data}), live),
+    card("哪隻英雄的場均陣亡最高？", `至少出場 ${R.champMin} 次才列入`, list(R.deaths, {champ:true, show:v => fmt(v, 2), data}), live),
+    card("提摩會不會至少被選一次？", "只要任何一場有人選提摩就算「會」",
+      R.teemo?.picks ? yesNo(true, "會 ✓", "") + `<p class="how">已被選 ${R.teemo.picks} 次</p>` : `<div class="big">還沒有</div><p class="how">${R.teemo?.bans ? `被禁 ${R.teemo.bans} 次，但還沒人選` : "目前沒被選也沒被禁"}</p>`,
+      R.teemo?.picks ? "done" : live),
+  ].join("");
+
+  const fk = FAKER_BASE + R.faker.k;
+  const peyzLead = R.peyz.k - R.guma.k;
+  $("#g-player").innerHTML = [
+    card("哪位選手的平均 KDA 最高？", `（擊殺＋助攻）÷ 陣亡，至少 ${MIN_PLAYER_GAMES} 場`, list(R.kda, {show:v => fmt(v, 2), data}), live),
+    card("哪位選手的場均傷害最高？", "對英雄造成的總傷害 ÷ 場數", list(R.dmg, {show:v => Math.round(v).toLocaleString("zh-TW"), data}), live),
+    card("哪位選手的平均參團率最高？", "每場（擊殺＋助攻）÷ 隊伍總擊殺，再取平均", list(R.kp, {show:pct, data}), live),
+    card("Peyz vs Gumayusi：誰的總擊殺比較多？", "整屆世界賽累計擊殺，打越多場越吃香",
+      `<div class="vs"><div><div class="big">${R.peyz.k}</div><div class="lab">Peyz・${R.peyz.g} 場</div></div><div class="lab">vs</div><div><div class="big">${R.guma.k}</div><div class="lab">Gumayusi・${R.guma.g} 場</div></div></div>
+       <p class="how">${peyzLead === 0 ? "目前平手" : `${peyzLead > 0 ? "Peyz" : "Gumayusi"} 領先 ${Math.abs(peyzLead)} 殺`}</p>`, live),
+    card("Faker 今年會達成世界賽生涯 700 殺嗎？", `賽前 ${FAKER_BASE} 殺＋本屆擊殺`,
+      `<div class="big">${fk}<small>/ 700</small></div><div class="meter"><i style="width:${Math.min(100, fk / 7)}%"></i></div>
+       <p class="how">${fk >= 700 ? "已達成 700 殺！" : `本屆 ${R.faker.k} 殺（${R.faker.g} 場），還差 ${700 - fk} 殺`}</p>`, fk >= 700 ? "done" : live),
+    card("決賽 MVP 會是哪個位置？", "11 月 14 日決賽結束後公布", `<p class="na">等決賽打完</p>`, "wait"),
+  ].join("");
+
+  const maxK = R.maxK ? num(R.maxK.k) : 0, maxCS = R.maxCS ? num(R.maxCS.cs) : 0;
+  const shortTxt = R.shortest ? `${esc(R.shortest.win)} 在 ${minSec(num(R.shortest.len))} 擊敗 ${esc(R.shortest.win === R.shortest.t1 ? R.shortest.t2 : R.shortest.t1)}` : "";
+  $("#g-event").innerHTML = [
+    card("總共會出現幾隻不同的英雄？", "至少被選過一次的英雄數",
+      `<div class="big">${R.unique}<small>隻</small></div>`, live),
+    card("比較多場在 32 分鐘前還是後結束？", "以遊戲時長計，剛好 32:00 算「之後」",
+      R.N ? `<div class="vs"><div><div class="big">${R.under32}</div><div class="lab">32 分前</div></div><div class="lab">vs</div><div><div class="big">${R.over32}</div><div class="lab">32 分後</div></div></div>` : `<p class="na">還沒有資料</p>`, live),
+    card("會有選手單場拿下 15 殺以上嗎？", "目前單場最高擊殺",
+      R.maxK ? `<div class="big">${maxK}<small>殺</small></div><p class="how">${esc(R.maxK.link.split(" (")[0])}（${esc(champLabel(R.maxK.champ))}）${maxK >= 15 ? "・已達成 ✓" : `・還差 ${15 - maxK} 殺`}</p>` : `<p class="na">還沒有資料</p>`, maxK >= 15 ? "done" : live),
+    card("會有選手單場補刀達 450 以上嗎？", "目前單場最高補刀",
+      R.maxCS ? `<div class="big">${maxCS}<small>刀</small></div><p class="how">${esc(R.maxCS.link.split(" (")[0])}（${esc(champLabel(R.maxCS.champ))}）${maxCS >= 450 ? "・已達成 ✓" : `・還差 ${450 - maxCS} 刀`}</p>` : `<p class="na">還沒有資料</p>`, maxCS >= 450 ? "done" : live),
+    card("哪支隊伍會贏下最短的一場？", "整屆最短的一場比賽的勝方",
+      R.shortest ? `<div class="big" style="font-size:22px">${esc(R.shortest.win)}</div><p class="how">${shortTxt}</p>` : `<p class="na">還沒有資料</p>`, live),
+  ].join("");
+
+  // 隊伍題
+  const koRegions = [...new Set(R.koTeams.map(R.regionOf).filter(Boolean))];
+  const naTeams = Object.keys(data.regions).filter(t => /north america|lcs|lta north/i.test(data.regions[t].region || ""));
+  const naInKO = R.koTeams.filter(t => naTeams.includes(t));
+  const recTxt = t => R.rec[t] ? `${R.rec[t].w} 勝 ${R.rec[t].l} 敗` : "尚未出賽";
+  const HLE = "Hanwha Life Esports", T1 = "T1";
+  $("#g-team").innerHTML = [
+    card("淘汰賽會有幾個不同賽區？", "8 強確定後計算",
+      R.koTeams.length ? `<div class="big">${koRegions.length}<small>個賽區</small></div><p class="how">${koRegions.map(r => REGION_ZH[r] || r).join("、")}</p>` : `<p class="na">淘汰賽 11 月 3 日開打後更新</p>`,
+      R.koTeams.length ? "done" : "wait"),
+    card("會有 LCS 隊伍打進淘汰賽嗎？", "北美隊伍目前的主賽事戰績",
+      R.koTeams.length ? yesNo(naInKO.length > 0, "會 ✓", "不會") + (naInKO.length ? `<p class="how">${naInKO.map(esc).join("、")}</p>` : "")
+        : naTeams.length ? `<ol>${naTeams.map(t => `<li class="row"><span></span><span></span><span class="nm">${esc(t)}</span><span class="val">${recTxt(t)}</span></li>`).join("")}</ol>` : `<p class="na">等待資料</p>`,
+      R.koTeams.length ? "done" : live),
+    card("HLE 和 T1 誰的名次比較高？", "主賽事戰績（入圍賽不計）",
+      `<div class="vs"><div><div class="big" style="font-size:20px">HLE</div><div class="lab">${recTxt(HLE)}</div></div><div class="lab">vs</div><div><div class="big" style="font-size:20px">T1</div><div class="lab">${recTxt(T1)}</div></div></div>
+       <p class="how">最終名次要等其中一隊被淘汰才確定</p>`, R.rec[HLE] || R.rec[T1] ? "live" : "wait"),
+  ].join("");
+}
+
+/* ---------- 流程 ---------- */
+let DATA = null;
+function readCache() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { return null; } }
+function writeCache(d) { try { localStorage.setItem(CACHE_KEY, JSON.stringify(d)); } catch (e) {} }
+function setStatus(t, err) { const s = $("#status"); s.textContent = t; s.classList.toggle("err", !!err); }
+const timeStr = ts => new Date(ts).toLocaleTimeString("zh-TW", {hour:"2-digit", minute:"2-digit"});
+
+async function refresh(force) {
+  const cached = readCache();
+  if (cached && !DATA) { DATA = cached; render(DATA); }
+  if (!force && cached && Date.now() - cached.fetchedAt < REFRESH_MS) { setStatus(`更新於 ${timeStr(cached.fetchedAt)}`); return; }
+  setStatus("正在從 Leaguepedia 抓資料…");
+  try {
+    DATA = await loadMatchData();
+    writeCache(DATA);
+    render(DATA);
+    const pages = [...new Set(DATA.games.map(g => g.page))].join("、");
+    setStatus(DATA.games.length
+      ? `更新於 ${timeStr(DATA.fetchedAt)}・共 ${DATA.games.length} 場・${DATA.players.length} 筆選手資料（${pages}）`
+      : `已連上 Leaguepedia，但找到 0 場比賽（${timeStr(DATA.fetchedAt)}）。可能是 Leaguepedia 還沒登錄數據。`, !DATA.games.length);
+  } catch (e) {
+    setStatus(`抓資料失敗：${e.message}。${DATA ? "目前顯示上次的資料，" : ""}稍後會自動重試。`, true);
+  }
+}
+
+$("#incPlayin").addEventListener("change", () => DATA && render(DATA));
+$("#refresh").addEventListener("click", () => refresh(true));
+(async () => {
+  CH = await loadChampNames();
+  render(readCache() || {games:[], players:[], regions:{}});
+  await refresh(false);
+  setInterval(() => refresh(true), REFRESH_MS);
+})();
+</script>
+</body>
+</html>
