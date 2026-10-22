@@ -83,7 +83,7 @@ footer a{color:inherit}
 <div class="wrap">
 <header>
   <h1>Worlds 2026 <span>水晶球</span>追蹤</h1>
-  <p>Pick'Ems 水晶球 18 題，每題目前誰領先，打完一場就更新。數據來自 Leaguepedia，每 10 分鐘自動重新抓取。</p>
+  <p>Pick'Ems 水晶球 18 題，每題目前誰領先，打完一場就更新。數據來自 Leaguepedia，每 10 分鐘自動更新。</p>
 </header>
 
 <div class="board" aria-live="polite">
@@ -95,7 +95,7 @@ footer a{color:inherit}
 
 <div class="controls">
   <label><input type="checkbox" id="incPlayin" checked> 計入入圍賽（Play-In）</label>
-  <button id="refresh" type="button">立即更新</button>
+  <button id="refresh" type="button">重新讀取</button>
   <span class="status" id="status">載入中…</span>
 </div>
 
@@ -117,7 +117,7 @@ footer a{color:inherit}
   <h4>為什麼有些題目顯示「等待中」？</h4>
   <p>像決賽 MVP、淘汰賽賽區數這類題目，要打到那個階段才有答案，時間到了會自動填上。</p>
   <h4>多久更新一次？</h4>
-  <p>頁面開著時每 10 分鐘重抓一次。Leaguepedia 的數據由志工在賽後補上，所以可能會比直播慢一點。</p>
+  <p>背景程式每 10 分鐘向 Leaguepedia 抓一次數據（GitHub 排程有時會晚幾分鐘）。Leaguepedia 的數據由志工在賽後補上，所以可能會比直播慢一點。</p>
   <h4>這是官方網站嗎？</h4>
   <p>不是，這是粉絲自製工具，可能有錯，請以 Riot 官方公布為準。</p>
 </details>
@@ -134,7 +134,7 @@ const EVENT = "2026 Season World Championship";
 const KNOCKOUT_START = "2026-11-03";       // 淘汰賽開打日（UTC 日期即可）
 const FAKER_BASE = 616;                    // 2026 世界賽前生涯擊殺
 const MIN_CHAMP_PICKS = 5, MIN_PLAYER_GAMES = 3;
-const CACHE_KEY = "cb2026-cache-v2", REFRESH_MS = 10 * 60 * 1000;
+const REFRESH_MS = 10 * 60 * 1000;
 
 const REGION_ZH = {"Korea":"LCK 韓國","China":"LPL 中國","EMEA":"LEC 歐洲","Europe":"LEC 歐洲","North America":"LCS 北美",
   "Asia Pacific":"LCP 亞太","Pacific":"LCP 亞太","PCS":"LCP 亞太","Vietnam":"VCS 越南","Japan":"LJL 日本","Brazil":"CBLOL 巴西",
@@ -148,46 +148,11 @@ const fmt = (v, d = 1) => Number(v).toFixed(d);
 const pct = v => (v * 100).toFixed(1) + "%";
 
 /* ---------- 抓資料 ---------- */
-async function cargo(params) {
-  const out = [];
-  for (let offset = 0; offset < 5000; offset += 500) {
-    const u = new URL(API);
-    const p = {action:"cargoquery", format:"json", origin:"*", limit:"500", offset:String(offset), ...params};
-    for (const [k, v] of Object.entries(p)) u.searchParams.set(k, v);
-    const r = await fetch(u);
-    if (!r.ok) throw new Error("Leaguepedia 回應 " + r.status);
-    const j = await r.json();
-    if (j.error) throw new Error(j.error.info || j.error.code);
-    const rows = (j.cargoquery || []).map(x => x.title);
-    out.push(...rows);
-    if (rows.length < 500) break;
-  }
-  return out;
-}
-
 async function loadMatchData() {
-  // 不綁死頁面名稱：名稱含 World Championship / Worlds，且在 2026/10/1 之後
-  const where = `(OverviewPage LIKE "%World Championship%" OR OverviewPage LIKE "%Worlds%") AND OverviewPage LIKE "%2026%"`;
-  const games = await cargo({tables:"ScoreboardGames", where, order_by:"DateTime_UTC",
-    fields:"GameId=gid,OverviewPage=page,Team1=t1,Team2=t2,WinTeam=win,Gamelength=lenStr,Gamelength_Number=len,DateTime_UTC=date,Team1Bans=b1,Team2Bans=b2"});
-  let players;
-  try {
-    players = await cargo({tables:"ScoreboardPlayers", where,
-      fields:"GameId=gid,Link=link,Team=team,Champion=champ,Kills=k,Deaths=d,Assists=a,CS=cs,DamageToChampions=dmg,Role=role,PlayerWin=pw"});
-  } catch (e) { // 欄位名稱若有變動，退回最小欄位
-    players = await cargo({tables:"ScoreboardPlayers", where,
-      fields:"GameId=gid,Link=link,Team=team,Champion=champ,Kills=k,Deaths=d,Assists=a,CS=cs,PlayerWin=pw"});
-  }
-  const teamNames = [...new Set(games.flatMap(g => [g.t1, g.t2]).filter(Boolean))];
-  let regions = {};
-  if (teamNames.length) {
-    try {
-      const list = teamNames.map(n => `"${n.replace(/"/g, '\\"')}"`).join(",");
-      const rows = await cargo({tables:"Teams", fields:"Name=name,Region=region,Short=short", where:`Name IN (${list})`});
-      rows.forEach(r => regions[r.name] = {region:r.region, short:r.short});
-    } catch (e) { /* 賽區抓不到時，相關題目會顯示等待中 */ }
-  }
-  return {games, players, regions, fetchedAt: Date.now()};
+  const r = await fetch("data.json?t=" + Date.now(), {cache: "no-store"});
+  if (r.status === 404) throw new Error("NO_DATA");
+  if (!r.ok) throw new Error("讀取 data.json 失敗（" + r.status + "）");
+  return r.json();
 }
 
 async function loadChampNames() {
@@ -363,37 +328,129 @@ function render(data) {
 
 /* ---------- 流程 ---------- */
 let DATA = null;
-function readCache() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { return null; } }
-function writeCache(d) { try { localStorage.setItem(CACHE_KEY, JSON.stringify(d)); } catch (e) {} }
 function setStatus(t, err) { const s = $("#status"); s.textContent = t; s.classList.toggle("err", !!err); }
-const timeStr = ts => new Date(ts).toLocaleTimeString("zh-TW", {hour:"2-digit", minute:"2-digit"});
+const timeStr = ts => new Date(ts).toLocaleString("zh-TW", {month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit"});
 
-async function refresh(force) {
-  const cached = readCache();
-  if (cached && !DATA) { DATA = cached; render(DATA); }
-  if (!force && cached && Date.now() - cached.fetchedAt < REFRESH_MS) { setStatus(`更新於 ${timeStr(cached.fetchedAt)}`); return; }
-  setStatus("正在從 Leaguepedia 抓資料…");
+async function refresh() {
   try {
     DATA = await loadMatchData();
-    writeCache(DATA);
     render(DATA);
-    const pages = [...new Set(DATA.games.map(g => g.page))].join("、");
-    setStatus(DATA.games.length
-      ? `更新於 ${timeStr(DATA.fetchedAt)}・共 ${DATA.games.length} 場・${DATA.players.length} 筆選手資料（${pages}）`
-      : `已連上 Leaguepedia，但找到 0 場比賽（${timeStr(DATA.fetchedAt)}）。可能是 Leaguepedia 還沒登錄數據。`, !DATA.games.length);
+    setStatus(`數據更新於 ${timeStr(DATA.fetchedAt)}・共 ${DATA.games.length} 場`);
   } catch (e) {
-    setStatus(`抓資料失敗：${e.message}。${DATA ? "目前顯示上次的資料，" : ""}稍後會自動重試。`, true);
+    setStatus(e.message === "NO_DATA"
+      ? "還沒有數據檔，等背景程式第一次跑完（約 1–3 分鐘）再重新整理"
+      : `${e.message}。${DATA ? "目前顯示上次的資料，" : ""}稍後會自動重試。`, true);
   }
 }
 
 $("#incPlayin").addEventListener("change", () => DATA && render(DATA));
-$("#refresh").addEventListener("click", () => refresh(true));
+$("#refresh").addEventListener("click", refresh);
 (async () => {
+  render({games:[], players:[], regions:{}});
   CH = await loadChampNames();
-  render(readCache() || {games:[], players:[], regions:{}});
-  await refresh(false);
-  setInterval(() => refresh(true), REFRESH_MS);
+  await refresh();
+  setInterval(refresh, REFRESH_MS);
 })();
 </script>
 </body>
 </html>
+"""從 Leaguepedia 抓 Worlds 2026 比賽數據，存成 data.json。
+由 GitHub Actions 每 10 分鐘執行一次；只用 Python 內建模組，不用另外安裝套件。
+可選：在 repo 的 Secrets 設 LP_USER / LP_PASS（Leaguepedia 的 Bot password），被限流的機會更低。
+"""
+import http.cookiejar, json, os, sys, time, urllib.parse, urllib.request
+
+API = "https://lol.fandom.com/api.php"
+UA = "Worlds2026CrystalBallTracker/1.0 (fan project hosted on GitHub Pages)"
+WHERE = 'OverviewPage LIKE "2026 Season World Championship%"'
+OUT = "data.json"
+
+jar = http.cookiejar.CookieJar()
+opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+
+
+def call(params, post=False):
+    params = {**params, "format": "json"}
+    data = urllib.parse.urlencode(params).encode()
+    if post:
+        req = urllib.request.Request(API, data=data, headers={"User-Agent": UA})
+    else:
+        req = urllib.request.Request(API + "?" + data.decode(), headers={"User-Agent": UA})
+    with opener.open(req, timeout=60) as r:
+        return json.load(r)
+
+
+def login():
+    user, pw = os.environ.get("LP_USER"), os.environ.get("LP_PASS")
+    if not user or not pw:
+        return
+    try:
+        token = call({"action": "query", "meta": "tokens", "type": "login"})["query"]["tokens"]["logintoken"]
+        res = call({"action": "login", "lgname": user, "lgpassword": pw, "lgtoken": token}, post=True)
+        print("登入：", res.get("login", {}).get("result"))
+    except Exception as e:
+        print("登入失敗，改用匿名查詢：", e)
+
+
+def cargo(**params):
+    rows, offset = [], 0
+    while True:
+        p = {"action": "cargoquery", "limit": "500", "offset": str(offset), **params}
+        for attempt in range(6):
+            j = call(p)
+            err = j.get("error")
+            if not err:
+                break
+            if err.get("code") == "ratelimited" or "rate limit" in err.get("info", "").lower():
+                wait = 30 * (attempt + 1)
+                print(f"被限流，{wait} 秒後重試…")
+                time.sleep(wait)
+                continue
+            raise RuntimeError(err.get("info") or err.get("code"))
+        else:
+            raise RuntimeError("重試多次仍被限流")
+        batch = [x["title"] for x in j.get("cargoquery", [])]
+        rows += batch
+        time.sleep(3)  # 對 Leaguepedia 客氣一點
+        if len(batch) < 500:
+            return rows
+        offset += 500
+
+
+def main():
+    login()
+    games = cargo(tables="ScoreboardGames", where=WHERE, order_by="DateTime_UTC",
+                  fields="GameId=gid,OverviewPage=page,Team1=t1,Team2=t2,WinTeam=win,Gamelength=lenStr,"
+                         "Gamelength_Number=len,DateTime_UTC=date,Team1Bans=b1,Team2Bans=b2")
+    players = cargo(tables="ScoreboardPlayers", where=WHERE,
+                    fields="GameId=gid,Link=link,Team=team,Champion=champ,Kills=k,Deaths=d,Assists=a,"
+                           "CS=cs,DamageToChampions=dmg,Role=role,PlayerWin=pw")
+    regions = {}
+    names = sorted({t for g in games for t in (g.get("t1"), g.get("t2")) if t})
+    if names:
+        lst = ",".join('"' + n.replace('"', '\\"') + '"' for n in names)
+        for r in cargo(tables="Teams", fields="Name=name,Region=region,Short=short", where=f"Name IN ({lst})"):
+            regions[r["name"]] = {"region": r.get("region"), "short": r.get("short")}
+
+    old = {}
+    if os.path.exists(OUT):
+        with open(OUT, encoding="utf-8") as f:
+            old = json.load(f)
+    if old.get("games") and len(games) < len(old["games"]):
+        print("新抓到的場次比舊資料少，可能是 Leaguepedia 暫時異常，保留舊資料")
+        return
+    if old.get("games") == games and old.get("players") == players and old.get("regions") == regions:
+        print("資料沒有變化")
+        return
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump({"games": games, "players": players, "regions": regions,
+                   "fetchedAt": int(time.time() * 1000)}, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"已更新：{len(games)} 場、{len(players)} 筆選手資料")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        print("抓資料失敗：", e)
+        sys.exit(0)  # 失敗就保留上一份 data.json，等下一輪再試
