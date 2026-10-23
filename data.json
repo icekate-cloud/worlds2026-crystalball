@@ -1,0 +1,260 @@
+{
+ "updated": "2026-10-23T22:10:23.698Z",
+ "games": 26,
+ "cards": [
+  {
+   "group": "Champions",
+   "q": "Highest presence (% of games picked or banned)",
+   "rows": [
+    {
+     "k": "Nocturne",
+     "v": "96.2%",
+     "s": ""
+    },
+    {
+     "k": "Olaf",
+     "v": "65.4%",
+     "s": ""
+    },
+    {
+     "k": "Seraphine",
+     "v": "65.4%",
+     "s": ""
+    },
+    {
+     "k": "Vi",
+     "v": "61.5%",
+     "s": ""
+    },
+    {
+     "k": "Ezreal",
+     "v": "57.7%",
+     "s": ""
+    }
+   ]
+  },
+  {
+   "group": "Champions",
+   "q": "Highest win rate (min 3 picks)",
+   "rows": [
+    {
+     "k": "Karma",
+     "v": "100.0%",
+     "s": "3 games"
+    },
+    {
+     "k": "Cassiopeia",
+     "v": "100.0%",
+     "s": "4 games"
+    },
+    {
+     "k": "Vi",
+     "v": "100.0%",
+     "s": "5 games"
+    },
+    {
+     "k": "Qiyana",
+     "v": "80.0%",
+     "s": "5 games"
+    },
+    {
+     "k": "Jhin",
+     "v": "80.0%",
+     "s": "5 games"
+    }
+   ]
+  },
+  {
+   "group": "Champions",
+   "q": "Highest average deaths per game (min 3 picks)",
+   "rows": [
+    {
+     "k": "Camille",
+     "v": "5.3",
+     "s": "4 games"
+    },
+    {
+     "k": "Leona",
+     "v": "5.0",
+     "s": "3 games"
+    },
+    {
+     "k": "K'Sante",
+     "v": "3.8",
+     "s": "6 games"
+    },
+    {
+     "k": "Alistar",
+     "v": "3.8",
+     "s": "5 games"
+    },
+    {
+     "k": "Naafiri",
+     "v": "3.8",
+     "s": "4 games"
+    }
+   ]
+  },
+  {
+   "group": "Players",
+   "q": "Highest average KDA",
+   "rows": [
+    {
+     "k": "Zeka",
+     "v": "22.00",
+     "s": "1 games"
+    },
+    {
+     "k": "Canyon",
+     "v": "18.00",
+     "s": "1 games"
+    },
+    {
+     "k": "Alvaro",
+     "v": "18.00",
+     "s": "1 games"
+    },
+    {
+     "k": "Chovy",
+     "v": "17.00",
+     "s": "1 games"
+    },
+    {
+     "k": "Gumayusi",
+     "v": "17.00",
+     "s": "1 games"
+    }
+   ]
+  },
+  {
+   "group": "Players",
+   "q": "Highest average damage per game",
+   "rows": [
+    {
+     "k": "Supa",
+     "v": "42,717",
+     "s": "1 games"
+    },
+    {
+     "k": "Knight",
+     "v": "29,337",
+     "s": "1 games"
+    },
+    {
+     "k": "Zeka",
+     "v": "28,111",
+     "s": "1 games"
+    },
+    {
+     "k": "Tactical",
+     "v": "27,549",
+     "s": "9 games"
+    },
+    {
+     "k": "Bin",
+     "v": "22,406",
+     "s": "1 games"
+    }
+   ]
+  },
+  {
+   "group": "Players",
+   "q": "Highest average kill participation",
+   "rows": [
+    {
+     "k": "Creme",
+     "v": "100.0%",
+     "s": "1 games"
+    },
+    {
+     "k": "Alvaro",
+     "v": "100.0%",
+     "s": "1 games"
+    },
+    {
+     "k": "Zeka",
+     "v": "91.7%",
+     "s": "1 games"
+    },
+    {
+     "k": "JiaQi",
+     "v": "90.0%",
+     "s": "1 games"
+    },
+    {
+     "k": "Rookie",
+     "v": "90.0%",
+     "s": "1 games"
+    }
+   ]
+  },
+  {
+   "group": "Players",
+   "q": "Peyz vs Gumayusi: more total kills",
+   "ans": "Gumayusi",
+   "sub": "Peyz 0 | Gumayusi 4"
+  },
+  {
+   "group": "Players",
+   "q": "Will Faker reach 700 career Worlds kills?",
+   "ans": "Not yet",
+   "sub": "616 of 700 (616 before Worlds 2026)"
+  },
+  {
+   "group": "Players",
+   "q": "Any pro with 15+ kills in one game?",
+   "ans": "Yes",
+   "sub": "Zeka (17)"
+  },
+  {
+   "group": "Players",
+   "q": "Any pro with 450+ CS in one game?",
+   "ans": "Not yet",
+   "sub": ""
+  },
+  {
+   "group": "Players",
+   "q": "Finals MVP role",
+   "wait": "Decided later in the event"
+  },
+  {
+   "group": "Events",
+   "q": "Will Teemo be picked at least once?",
+   "ans": "Not yet",
+   "sub": ""
+  },
+  {
+   "group": "Events",
+   "q": "How many unique champions will be picked?",
+   "ans": "87",
+   "sub": "so far"
+  },
+  {
+   "group": "Events",
+   "q": "More games before or after 32 minutes?",
+   "ans": "After",
+   "sub": "12 under 32 | 14 at 32 or more"
+  },
+  {
+   "group": "Events",
+   "q": "Regions represented in Knockouts",
+   "wait": "Decided later in the event"
+  },
+  {
+   "group": "Events",
+   "q": "Will an LCS team reach Knockouts?",
+   "wait": "Decided later in the event"
+  },
+  {
+   "group": "Teams",
+   "q": "HLE or T1: who places higher?",
+   "wait": "Decided later in the event"
+  },
+  {
+   "group": "Teams",
+   "q": "Which team wins the shortest game?",
+   "ans": "Hanwha Life Esports",
+   "sub": "23.9 min (Top Esports vs Hanwha Life Esports)"
+  }
+ ]
+}
