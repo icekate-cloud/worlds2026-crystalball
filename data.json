@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-24T19:40:18.750Z",
- "games": 32,
+ "updated": "2026-10-24T21:50:16.760Z",
+ "games": 34,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "93.8%",
+     "v": "94.1%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "68.8%",
+     "v": "70.6%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "65.6%",
-     "s": ""
-    },
-    {
-     "k": "Cassiopeia",
-     "v": "59.4%",
+     "v": "67.6%",
      "s": ""
     },
     {
      "k": "Ezreal",
-     "v": "59.4%",
+     "v": "61.8%",
+     "s": ""
+    },
+    {
+     "k": "Cassiopeia",
+     "v": "58.8%",
      "s": ""
     }
    ]
@@ -40,7 +40,7 @@
     {
      "k": "Karma",
      "v": "100.0%",
-     "s": "3 games"
+     "s": "4 games"
     },
     {
      "k": "Vi",
@@ -48,19 +48,19 @@
      "s": "6 games"
     },
     {
-     "k": "Cassiopeia",
-     "v": "100.0%",
-     "s": "5 games"
-    },
-    {
      "k": "Qiyana",
      "v": "85.7%",
      "s": "7 games"
     },
     {
-     "k": "Jayce",
-     "v": "80.0%",
-     "s": "5 games"
+     "k": "Cassiopeia",
+     "v": "83.3%",
+     "s": "6 games"
+    },
+    {
+     "k": "Zaahen",
+     "v": "75.0%",
+     "s": "4 games"
     }
    ]
   },
@@ -89,9 +89,9 @@
      "s": "5 games"
     },
     {
-     "k": "Rumble",
+     "k": "Naafiri",
      "v": "3.8",
-     "s": "10 games"
+     "s": "4 games"
     }
    ]
   },
@@ -110,17 +110,17 @@
      "s": "1 games"
     },
     {
-     "k": "Berserker",
-     "v": "18.00",
-     "s": "1 games"
-    },
-    {
      "k": "Chovy",
      "v": "17.00",
      "s": "1 games"
     },
     {
      "k": "Gumayusi",
+     "v": "17.00",
+     "s": "1 games"
+    },
+    {
+     "k": "Zeus",
      "v": "17.00",
      "s": "1 games"
     }
@@ -130,6 +130,11 @@
    "group": "Players",
    "q": "Highest average damage per game",
    "rows": [
+    {
+     "k": "Berserker",
+     "v": "33,842",
+     "s": "2 games"
+    },
     {
      "k": "Supa",
      "v": "32,159",
@@ -146,14 +151,9 @@
      "s": "1 games"
     },
     {
-     "k": "Tactical",
-     "v": "27,549",
-     "s": "9 games"
-    },
-    {
-     "k": "Doran",
-     "v": "27,398",
-     "s": "1 games"
+     "k": "Hans Sama",
+     "v": "27,604",
+     "s": "2 games"
     }
    ]
   },
@@ -167,23 +167,23 @@
      "s": "1 games"
     },
     {
-     "k": "SkewMond",
-     "v": "100.0%",
-     "s": "1 games"
-    },
-    {
-     "k": "Ackerman",
-     "v": "100.0%",
-     "s": "1 games"
-    },
-    {
-     "k": "Feisty",
-     "v": "100.0%",
+     "k": "Zeka",
+     "v": "91.7%",
      "s": "1 games"
     },
     {
      "k": "Isles",
-     "v": "95.5%",
+     "v": "91.1%",
+     "s": "2 games"
+    },
+    {
+     "k": "SkewMond",
+     "v": "90.9%",
+     "s": "2 games"
+    },
+    {
+     "k": "Josedeodo",
+     "v": "90.9%",
      "s": "1 games"
     }
    ]
@@ -233,7 +233,7 @@
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "15 under 32 | 17 at 32 or more"
+   "sub": "15 under 32 | 19 at 32 or more"
   },
   {
    "group": "Events",
