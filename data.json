@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-23T23:00:24.607Z",
- "games": 27,
+ "updated": "2026-10-24T01:30:18.638Z",
+ "games": 30,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "96.3%",
-     "s": ""
-    },
-    {
-     "k": "Olaf",
-     "v": "66.7%",
-     "s": ""
-    },
-    {
-     "k": "Seraphine",
-     "v": "66.7%",
+     "v": "93.3%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "63.0%",
+     "v": "66.7%",
      "s": ""
     },
     {
-     "k": "Ezreal",
-     "v": "55.6%",
+     "k": "Olaf",
+     "v": "63.3%",
+     "s": ""
+    },
+    {
+     "k": "Seraphine",
+     "v": "60.0%",
+     "s": ""
+    },
+    {
+     "k": "Cassiopeia",
+     "v": "56.7%",
      "s": ""
     }
    ]
@@ -53,14 +53,14 @@
      "s": "4 games"
     },
     {
-     "k": "Olaf",
+     "k": "Qiyana",
      "v": "83.3%",
      "s": "6 games"
     },
     {
-     "k": "Qiyana",
-     "v": "80.0%",
-     "s": "5 games"
+     "k": "Olaf",
+     "v": "83.3%",
+     "s": "6 games"
     }
    ]
   },
@@ -79,19 +79,19 @@
      "s": "3 games"
     },
     {
-     "k": "Alistar",
-     "v": "3.8",
+     "k": "Pantheon",
+     "v": "4.3",
+     "s": "3 games"
+    },
+    {
+     "k": "Nautilus",
+     "v": "4.0",
      "s": "5 games"
     },
     {
      "k": "Naafiri",
      "v": "3.8",
      "s": "4 games"
-    },
-    {
-     "k": "Sylas",
-     "v": "3.7",
-     "s": "3 games"
     }
    ]
   },
@@ -115,12 +115,12 @@
      "s": "1 games"
     },
     {
-     "k": "Chovy",
-     "v": "17.00",
+     "k": "Berserker",
+     "v": "18.00",
      "s": "1 games"
     },
     {
-     "k": "Gumayusi",
+     "k": "Chovy",
      "v": "17.00",
      "s": "1 games"
     }
@@ -151,8 +151,8 @@
      "s": "9 games"
     },
     {
-     "k": "Smash",
-     "v": "26,845",
+     "k": "Doran",
+     "v": "27,398",
      "s": "1 games"
     }
    ]
@@ -182,8 +182,8 @@
      "s": "1 games"
     },
     {
-     "k": "Zeka",
-     "v": "91.7%",
+     "k": "Kino",
+     "v": "100.0%",
      "s": "1 games"
     }
    ]
@@ -192,13 +192,13 @@
    "group": "Players",
    "q": "Peyz vs Gumayusi: more total kills",
    "ans": "Gumayusi",
-   "sub": "Peyz 0 | Gumayusi 4"
+   "sub": "Peyz 1 | Gumayusi 4"
   },
   {
    "group": "Players",
    "q": "Will Faker reach 700 career Worlds kills?",
    "ans": "Not yet",
-   "sub": "616 of 700 (616 before Worlds 2026)"
+   "sub": "622 of 700 (616 before Worlds 2026)"
   },
   {
    "group": "Players",
@@ -226,14 +226,14 @@
   {
    "group": "Events",
    "q": "How many unique champions will be picked?",
-   "ans": "88",
+   "ans": "90",
    "sub": "so far"
   },
   {
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "12 under 32 | 15 at 32 or more"
+   "sub": "14 under 32 | 16 at 32 or more"
   },
   {
    "group": "Events",
