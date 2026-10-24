@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-24T01:30:18.638Z",
- "games": 30,
+ "updated": "2026-10-24T19:40:18.750Z",
+ "games": 32,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "93.3%",
+     "v": "93.8%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "66.7%",
+     "v": "68.8%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "63.3%",
-     "s": ""
-    },
-    {
-     "k": "Seraphine",
-     "v": "60.0%",
+     "v": "65.6%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "56.7%",
+     "v": "59.4%",
+     "s": ""
+    },
+    {
+     "k": "Ezreal",
+     "v": "59.4%",
      "s": ""
     }
    ]
@@ -50,17 +50,17 @@
     {
      "k": "Cassiopeia",
      "v": "100.0%",
-     "s": "4 games"
+     "s": "5 games"
     },
     {
      "k": "Qiyana",
-     "v": "83.3%",
-     "s": "6 games"
+     "v": "85.7%",
+     "s": "7 games"
     },
     {
-     "k": "Olaf",
-     "v": "83.3%",
-     "s": "6 games"
+     "k": "Jayce",
+     "v": "80.0%",
+     "s": "5 games"
     }
    ]
   },
@@ -89,9 +89,9 @@
      "s": "5 games"
     },
     {
-     "k": "Naafiri",
+     "k": "Rumble",
      "v": "3.8",
-     "s": "4 games"
+     "s": "10 games"
     }
    ]
   },
@@ -110,17 +110,17 @@
      "s": "1 games"
     },
     {
-     "k": "Alvaro",
-     "v": "18.00",
-     "s": "1 games"
-    },
-    {
      "k": "Berserker",
      "v": "18.00",
      "s": "1 games"
     },
     {
      "k": "Chovy",
+     "v": "17.00",
+     "s": "1 games"
+    },
+    {
+     "k": "Gumayusi",
      "v": "17.00",
      "s": "1 games"
     }
@@ -132,8 +132,8 @@
    "rows": [
     {
      "k": "Supa",
-     "v": "42,717",
-     "s": "1 games"
+     "v": "32,159",
+     "s": "2 games"
     },
     {
      "k": "Knight",
@@ -162,16 +162,6 @@
    "q": "Highest average kill participation",
    "rows": [
     {
-     "k": "Creme",
-     "v": "100.0%",
-     "s": "1 games"
-    },
-    {
-     "k": "Alvaro",
-     "v": "100.0%",
-     "s": "1 games"
-    },
-    {
      "k": "ShowMaker",
      "v": "100.0%",
      "s": "1 games"
@@ -182,8 +172,18 @@
      "s": "1 games"
     },
     {
-     "k": "Kino",
+     "k": "Ackerman",
      "v": "100.0%",
+     "s": "1 games"
+    },
+    {
+     "k": "Feisty",
+     "v": "100.0%",
+     "s": "1 games"
+    },
+    {
+     "k": "Isles",
+     "v": "95.5%",
      "s": "1 games"
     }
    ]
@@ -233,7 +233,7 @@
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "14 under 32 | 16 at 32 or more"
+   "sub": "15 under 32 | 17 at 32 or more"
   },
   {
    "group": "Events",
