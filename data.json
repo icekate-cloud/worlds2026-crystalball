@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-25T19:50:20.430Z",
- "games": 40,
+ "updated": "2026-10-25T22:10:19.710Z",
+ "games": 42,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "95.0%",
+     "v": "95.2%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "75.0%",
+     "v": "76.2%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "70.0%",
+     "v": "71.4%",
      "s": ""
     },
     {
      "k": "Ezreal",
-     "v": "62.5%",
+     "v": "61.9%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "60.0%",
+     "v": "59.5%",
      "s": ""
     }
    ]
@@ -38,17 +38,17 @@
    "q": "Highest win rate (min 3 picks)",
    "rows": [
     {
-     "k": "Vi",
+     "k": "Cassiopeia",
      "v": "85.7%",
      "s": "7 games"
     },
     {
-     "k": "Cassiopeia",
-     "v": "83.3%",
-     "s": "6 games"
+     "k": "Nocturne",
+     "v": "75.0%",
+     "s": "8 games"
     },
     {
-     "k": "Nocturne",
+     "k": "Vi",
      "v": "75.0%",
      "s": "8 games"
     },
@@ -74,6 +74,11 @@
      "s": "4 games"
     },
     {
+     "k": "Ornn",
+     "v": "4.7",
+     "s": "3 games"
+    },
+    {
      "k": "Camille",
      "v": "4.4",
      "s": "5 games"
@@ -87,11 +92,6 @@
      "k": "Alistar",
      "v": "4.0",
      "s": "10 games"
-    },
-    {
-     "k": "Naafiri",
-     "v": "3.8",
-     "s": "4 games"
     }
    ]
   },
@@ -100,18 +100,8 @@
    "q": "Highest average KDA",
    "rows": [
     {
-     "k": "Alvaro",
-     "v": "16.00",
-     "s": "2 games"
-    },
-    {
      "k": "Chovy",
      "v": "15.00",
-     "s": "2 games"
-    },
-    {
-     "k": "Smash",
-     "v": "14.00",
      "s": "2 games"
     },
     {
@@ -122,6 +112,16 @@
     {
      "k": "Dhokla",
      "v": "12.00",
+     "s": "2 games"
+    },
+    {
+     "k": "Canyon",
+     "v": "11.00",
+     "s": "2 games"
+    },
+    {
+     "k": "Ruler",
+     "v": "10.67",
      "s": "2 games"
     }
    ]
@@ -137,8 +137,8 @@
     },
     {
      "k": "Supa",
-     "v": "32,159",
-     "s": "2 games"
+     "v": "30,324",
+     "s": "4 games"
     },
     {
      "k": "Knight",
@@ -226,14 +226,14 @@
   {
    "group": "Events",
    "q": "How many unique champions will be picked?",
-   "ans": "91",
+   "ans": "93",
    "sub": "so far"
   },
   {
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "19 under 32 | 21 at 32 or more"
+   "sub": "20 under 32 | 22 at 32 or more"
   },
   {
    "group": "Events",
