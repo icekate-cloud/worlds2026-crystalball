@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-25T04:50:17.038Z",
- "games": 38,
+ "updated": "2026-10-25T19:50:20.430Z",
+ "games": 40,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "94.7%",
+     "v": "95.0%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "73.7%",
+     "v": "75.0%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "68.4%",
+     "v": "70.0%",
      "s": ""
     },
     {
      "k": "Ezreal",
-     "v": "63.2%",
+     "v": "62.5%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "60.5%",
+     "v": "60.0%",
      "s": ""
     }
    ]
@@ -48,19 +48,19 @@
      "s": "6 games"
     },
     {
-     "k": "Karma",
-     "v": "80.0%",
-     "s": "5 games"
-    },
-    {
-     "k": "Qiyana",
-     "v": "77.8%",
-     "s": "9 games"
+     "k": "Nocturne",
+     "v": "75.0%",
+     "s": "8 games"
     },
     {
      "k": "Viktor",
      "v": "75.0%",
      "s": "8 games"
+    },
+    {
+     "k": "Zaahen",
+     "v": "75.0%",
+     "s": "4 games"
     }
    ]
   },
@@ -100,11 +100,6 @@
    "q": "Highest average KDA",
    "rows": [
     {
-     "k": "Gumayusi",
-     "v": "20.00",
-     "s": "2 games"
-    },
-    {
      "k": "Alvaro",
      "v": "16.00",
      "s": "2 games"
@@ -122,6 +117,11 @@
     {
      "k": "Saint",
      "v": "12.50",
+     "s": "2 games"
+    },
+    {
+     "k": "Dhokla",
+     "v": "12.00",
      "s": "2 games"
     }
    ]
@@ -147,8 +147,8 @@
     },
     {
      "k": "Hans Sama",
-     "v": "27,604",
-     "s": "2 games"
+     "v": "28,370",
+     "s": "3 games"
     },
     {
      "k": "Tactical",
@@ -162,23 +162,23 @@
    "q": "Highest average kill participation",
    "rows": [
     {
-     "k": "Zeka",
-     "v": "95.8%",
-     "s": "2 games"
-    },
-    {
      "k": "Josedeodo",
      "v": "95.5%",
      "s": "2 games"
     },
     {
-     "k": "Isles",
-     "v": "91.1%",
-     "s": "2 games"
+     "k": "SkewMond",
+     "v": "93.9%",
+     "s": "3 games"
     },
     {
-     "k": "SkewMond",
-     "v": "90.9%",
+     "k": "Zeka",
+     "v": "93.5%",
+     "s": "3 games"
+    },
+    {
+     "k": "Isles",
+     "v": "91.1%",
      "s": "2 games"
     },
     {
@@ -226,14 +226,14 @@
   {
    "group": "Events",
    "q": "How many unique champions will be picked?",
-   "ans": "90",
+   "ans": "91",
    "sub": "so far"
   },
   {
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "18 under 32 | 20 at 32 or more"
+   "sub": "19 under 32 | 21 at 32 or more"
   },
   {
    "group": "Events",
