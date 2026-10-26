@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-25T22:10:19.710Z",
- "games": 42,
+ "updated": "2026-10-26T00:20:20.019Z",
+ "games": 45,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "95.2%",
+     "v": "93.3%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "76.2%",
+     "v": "75.6%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "71.4%",
+     "v": "68.9%",
      "s": ""
     },
     {
      "k": "Ezreal",
-     "v": "61.9%",
+     "v": "64.4%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "59.5%",
+     "v": "62.2%",
      "s": ""
     }
    ]
@@ -44,18 +44,18 @@
     },
     {
      "k": "Nocturne",
-     "v": "75.0%",
-     "s": "8 games"
-    },
-    {
-     "k": "Vi",
-     "v": "75.0%",
-     "s": "8 games"
+     "v": "77.8%",
+     "s": "9 games"
     },
     {
      "k": "Viktor",
      "v": "75.0%",
      "s": "8 games"
+    },
+    {
+     "k": "Ahri",
+     "v": "75.0%",
+     "s": "4 games"
     },
     {
      "k": "Zaahen",
@@ -79,19 +79,19 @@
      "s": "3 games"
     },
     {
-     "k": "Camille",
-     "v": "4.4",
-     "s": "5 games"
-    },
-    {
      "k": "Leona",
      "v": "4.3",
      "s": "4 games"
     },
     {
      "k": "Alistar",
-     "v": "4.0",
-     "s": "10 games"
+     "v": "3.9",
+     "s": "11 games"
+    },
+    {
+     "k": "Camille",
+     "v": "3.8",
+     "s": "6 games"
     }
    ]
   },
@@ -100,28 +100,28 @@
    "q": "Highest average KDA",
    "rows": [
     {
-     "k": "Chovy",
-     "v": "15.00",
-     "s": "2 games"
-    },
-    {
-     "k": "Saint",
-     "v": "12.50",
-     "s": "2 games"
-    },
-    {
-     "k": "Dhokla",
-     "v": "12.00",
-     "s": "2 games"
+     "k": "Smash",
+     "v": "10.67",
+     "s": "4 games"
     },
     {
      "k": "Canyon",
-     "v": "11.00",
-     "s": "2 games"
+     "v": "10.50",
+     "s": "5 games"
     },
     {
-     "k": "Ruler",
-     "v": "10.67",
+     "k": "Wei",
+     "v": "9.40",
+     "s": "3 games"
+    },
+    {
+     "k": "ShowMaker",
+     "v": "9.00",
+     "s": "4 games"
+    },
+    {
+     "k": "Faker",
+     "v": "9.00",
      "s": "2 games"
     }
    ]
@@ -130,11 +130,6 @@
    "group": "Players",
    "q": "Highest average damage per game",
    "rows": [
-    {
-     "k": "Berserker",
-     "v": "33,842",
-     "s": "2 games"
-    },
     {
      "k": "Supa",
      "v": "30,324",
@@ -154,6 +149,11 @@
      "k": "Tactical",
      "v": "27,549",
      "s": "9 games"
+    },
+    {
+     "k": "Doran",
+     "v": "25,850",
+     "s": "2 games"
     }
    ]
   },
@@ -177,12 +177,12 @@
      "s": "3 games"
     },
     {
-     "k": "Isles",
-     "v": "91.1%",
+     "k": "CoreJJ",
+     "v": "90.9%",
      "s": "2 games"
     },
     {
-     "k": "CoreJJ",
+     "k": "Quid",
      "v": "90.9%",
      "s": "2 games"
     }
@@ -233,7 +233,7 @@
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "20 under 32 | 22 at 32 or more"
+   "sub": "22 under 32 | 23 at 32 or more"
   },
   {
    "group": "Events",
