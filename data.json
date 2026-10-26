@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-26T00:20:20.019Z",
- "games": 45,
+ "updated": "2026-10-26T21:40:22.459Z",
+ "games": 47,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "93.3%",
+     "v": "93.6%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "75.6%",
+     "v": "76.6%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "68.9%",
-     "s": ""
-    },
-    {
-     "k": "Ezreal",
-     "v": "64.4%",
+     "v": "66.0%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "62.2%",
+     "v": "63.8%",
+     "s": ""
+    },
+    {
+     "k": "Ezreal",
+     "v": "63.8%",
      "s": ""
     }
    ]
@@ -48,11 +48,6 @@
      "s": "9 games"
     },
     {
-     "k": "Viktor",
-     "v": "75.0%",
-     "s": "8 games"
-    },
-    {
      "k": "Ahri",
      "v": "75.0%",
      "s": "4 games"
@@ -61,6 +56,11 @@
      "k": "Zaahen",
      "v": "75.0%",
      "s": "4 games"
+    },
+    {
+     "k": "Seraphine",
+     "v": "71.4%",
+     "s": "7 games"
     }
    ]
   },
@@ -85,8 +85,8 @@
     },
     {
      "k": "Alistar",
-     "v": "3.9",
-     "s": "11 games"
+     "v": "3.8",
+     "s": "13 games"
     },
     {
      "k": "Camille",
@@ -105,6 +105,11 @@
      "s": "4 games"
     },
     {
+     "k": "Keria",
+     "v": "10.67",
+     "s": "3 games"
+    },
+    {
      "k": "Canyon",
      "v": "10.50",
      "s": "5 games"
@@ -115,14 +120,9 @@
      "s": "3 games"
     },
     {
-     "k": "ShowMaker",
-     "v": "9.00",
-     "s": "4 games"
-    },
-    {
      "k": "Faker",
-     "v": "9.00",
-     "s": "2 games"
+     "v": "9.33",
+     "s": "3 games"
     }
    ]
   },
@@ -136,13 +136,13 @@
      "s": "4 games"
     },
     {
-     "k": "Knight",
-     "v": "30,144",
-     "s": "2 games"
-    },
-    {
      "k": "Hans Sama",
      "v": "28,370",
+     "s": "3 games"
+    },
+    {
+     "k": "Knight",
+     "v": "28,246",
      "s": "3 games"
     },
     {
@@ -151,9 +151,9 @@
      "s": "9 games"
     },
     {
-     "k": "Doran",
-     "v": "25,850",
-     "s": "2 games"
+     "k": "Smash",
+     "v": "24,346",
+     "s": "4 games"
     }
    ]
   },
@@ -191,14 +191,14 @@
   {
    "group": "Players",
    "q": "Peyz vs Gumayusi: more total kills",
-   "ans": "Tied",
-   "sub": "Peyz 5 | Gumayusi 5"
+   "ans": "Peyz",
+   "sub": "Peyz 8 | Gumayusi 5"
   },
   {
    "group": "Players",
    "q": "Will Faker reach 700 career Worlds kills?",
    "ans": "Not yet",
-   "sub": "623 of 700 (616 before Worlds 2026)"
+   "sub": "625 of 700 (616 before Worlds 2026)"
   },
   {
    "group": "Players",
@@ -233,7 +233,7 @@
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "22 under 32 | 23 at 32 or more"
+   "sub": "23 under 32 | 24 at 32 or more"
   },
   {
    "group": "Events",
