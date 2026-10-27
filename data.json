@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-26T21:40:22.459Z",
- "games": 47,
+ "updated": "2026-10-27T00:50:19.380Z",
+ "games": 51,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "93.6%",
+     "v": "94.1%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "76.6%",
-     "s": ""
-    },
-    {
-     "k": "Olaf",
-     "v": "66.0%",
+     "v": "78.4%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "63.8%",
+     "v": "66.7%",
      "s": ""
     },
     {
-     "k": "Ezreal",
-     "v": "63.8%",
+     "k": "Olaf",
+     "v": "64.7%",
+     "s": ""
+    },
+    {
+     "k": "Syndra",
+     "v": "62.7%",
      "s": ""
     }
    ]
@@ -43,24 +43,24 @@
      "s": "7 games"
     },
     {
-     "k": "Nocturne",
+     "k": "Galio",
      "v": "77.8%",
      "s": "9 games"
+    },
+    {
+     "k": "Seraphine",
+     "v": "75.0%",
+     "s": "8 games"
+    },
+    {
+     "k": "Gnar",
+     "v": "75.0%",
+     "s": "4 games"
     },
     {
      "k": "Ahri",
      "v": "75.0%",
      "s": "4 games"
-    },
-    {
-     "k": "Zaahen",
-     "v": "75.0%",
-     "s": "4 games"
-    },
-    {
-     "k": "Seraphine",
-     "v": "71.4%",
-     "s": "7 games"
     }
    ]
   },
@@ -71,7 +71,7 @@
     {
      "k": "Pantheon",
      "v": "4.8",
-     "s": "4 games"
+     "s": "5 games"
     },
     {
      "k": "Ornn",
@@ -89,9 +89,9 @@
      "s": "13 games"
     },
     {
-     "k": "Camille",
+     "k": "Naafiri",
      "v": "3.8",
-     "s": "6 games"
+     "s": "4 games"
     }
    ]
   },
@@ -136,6 +136,11 @@
      "s": "4 games"
     },
     {
+     "k": "Yeon",
+     "v": "29,038",
+     "s": "4 games"
+    },
+    {
      "k": "Hans Sama",
      "v": "28,370",
      "s": "3 games"
@@ -149,11 +154,6 @@
      "k": "Tactical",
      "v": "27,549",
      "s": "9 games"
-    },
-    {
-     "k": "Smash",
-     "v": "24,346",
-     "s": "4 games"
     }
    ]
   },
@@ -161,11 +161,6 @@
    "group": "Players",
    "q": "Highest average kill participation",
    "rows": [
-    {
-     "k": "Josedeodo",
-     "v": "95.5%",
-     "s": "2 games"
-    },
     {
      "k": "SkewMond",
      "v": "93.9%",
@@ -177,14 +172,19 @@
      "s": "3 games"
     },
     {
-     "k": "CoreJJ",
-     "v": "90.9%",
-     "s": "2 games"
+     "k": "Isles",
+     "v": "90.0%",
+     "s": "5 games"
     },
     {
-     "k": "Quid",
-     "v": "90.9%",
-     "s": "2 games"
+     "k": "Knight",
+     "v": "89.4%",
+     "s": "3 games"
+    },
+    {
+     "k": "CoreJJ",
+     "v": "87.9%",
+     "s": "4 games"
     }
    ]
   },
@@ -210,7 +210,7 @@
    "group": "Players",
    "q": "Any pro with 450+ CS in one game?",
    "ans": "Yes",
-   "sub": "Smash (507), Peyz (472)"
+   "sub": "Smash (507), Peyz (472), Hope (463), Yeon (544)"
   },
   {
    "group": "Players",
@@ -226,14 +226,14 @@
   {
    "group": "Events",
    "q": "How many unique champions will be picked?",
-   "ans": "93",
+   "ans": "96",
    "sub": "so far"
   },
   {
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "23 under 32 | 24 at 32 or more"
+   "sub": "23 under 32 | 28 at 32 or more"
   },
   {
    "group": "Events",
