@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-27T00:50:19.380Z",
- "games": 51,
+ "updated": "2026-10-28T23:00:21.800Z",
+ "games": 53,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "94.1%",
+     "v": "94.3%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "78.4%",
+     "v": "79.2%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "66.7%",
+     "v": "67.9%",
      "s": ""
     },
     {
      "k": "Olaf",
-     "v": "64.7%",
+     "v": "64.2%",
      "s": ""
     },
     {
      "k": "Syndra",
-     "v": "62.7%",
+     "v": "62.3%",
      "s": ""
     }
    ]
@@ -48,19 +48,19 @@
      "s": "9 games"
     },
     {
-     "k": "Seraphine",
-     "v": "75.0%",
-     "s": "8 games"
-    },
-    {
-     "k": "Gnar",
-     "v": "75.0%",
-     "s": "4 games"
-    },
-    {
      "k": "Ahri",
      "v": "75.0%",
      "s": "4 games"
+    },
+    {
+     "k": "Zaahen",
+     "v": "75.0%",
+     "s": "4 games"
+    },
+    {
+     "k": "Ashe",
+     "v": "71.4%",
+     "s": "7 games"
     }
    ]
   },
@@ -75,8 +75,8 @@
     },
     {
      "k": "Ornn",
-     "v": "4.7",
-     "s": "3 games"
+     "v": "4.5",
+     "s": "4 games"
     },
     {
      "k": "Leona",
@@ -85,8 +85,8 @@
     },
     {
      "k": "Alistar",
-     "v": "3.8",
-     "s": "13 games"
+     "v": "3.9",
+     "s": "14 games"
     },
     {
      "k": "Naafiri",
@@ -105,11 +105,6 @@
      "s": "4 games"
     },
     {
-     "k": "Keria",
-     "v": "10.67",
-     "s": "3 games"
-    },
-    {
      "k": "Canyon",
      "v": "10.50",
      "s": "5 games"
@@ -120,9 +115,14 @@
      "s": "3 games"
     },
     {
-     "k": "Faker",
-     "v": "9.33",
+     "k": "Bin",
+     "v": "9.00",
      "s": "3 games"
+    },
+    {
+     "k": "ShowMaker",
+     "v": "9.00",
+     "s": "4 games"
     }
    ]
   },
@@ -130,11 +130,6 @@
    "group": "Players",
    "q": "Highest average damage per game",
    "rows": [
-    {
-     "k": "Supa",
-     "v": "30,324",
-     "s": "4 games"
-    },
     {
      "k": "Yeon",
      "v": "29,038",
@@ -154,6 +149,11 @@
      "k": "Tactical",
      "v": "27,549",
      "s": "9 games"
+    },
+    {
+     "k": "Zest",
+     "v": "26,816",
+     "s": "4 games"
     }
    ]
   },
@@ -192,13 +192,13 @@
    "group": "Players",
    "q": "Peyz vs Gumayusi: more total kills",
    "ans": "Peyz",
-   "sub": "Peyz 8 | Gumayusi 5"
+   "sub": "Peyz 18 | Gumayusi 5"
   },
   {
    "group": "Players",
    "q": "Will Faker reach 700 career Worlds kills?",
    "ans": "Not yet",
-   "sub": "625 of 700 (616 before Worlds 2026)"
+   "sub": "635 of 700 (616 before Worlds 2026)"
   },
   {
    "group": "Players",
@@ -210,7 +210,7 @@
    "group": "Players",
    "q": "Any pro with 450+ CS in one game?",
    "ans": "Yes",
-   "sub": "Smash (507), Peyz (472), Hope (463), Yeon (544)"
+   "sub": "Smash (507), Peyz (472), Hope (463), Yeon (544), Peyz (478)"
   },
   {
    "group": "Players",
@@ -226,14 +226,14 @@
   {
    "group": "Events",
    "q": "How many unique champions will be picked?",
-   "ans": "96",
+   "ans": "97",
    "sub": "so far"
   },
   {
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "23 under 32 | 28 at 32 or more"
+   "sub": "24 under 32 | 29 at 32 or more"
   },
   {
    "group": "Events",
