@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-28T23:00:21.800Z",
- "games": 53,
+ "updated": "2026-10-29T02:10:19.246Z",
+ "games": 56,
  "cards": [
   {
    "group": "Champions",
@@ -8,27 +8,27 @@
    "rows": [
     {
      "k": "Nocturne",
-     "v": "94.3%",
+     "v": "91.1%",
      "s": ""
     },
     {
      "k": "Vi",
-     "v": "79.2%",
+     "v": "76.8%",
      "s": ""
     },
     {
      "k": "Cassiopeia",
-     "v": "67.9%",
-     "s": ""
-    },
-    {
-     "k": "Olaf",
-     "v": "64.2%",
+     "v": "69.6%",
      "s": ""
     },
     {
      "k": "Syndra",
-     "v": "62.3%",
+     "v": "64.3%",
+     "s": ""
+    },
+    {
+     "k": "Renata Glasc",
+     "v": "62.5%",
      "s": ""
     }
    ]
@@ -37,6 +37,11 @@
    "group": "Champions",
    "q": "Highest win rate (min 3 picks)",
    "rows": [
+    {
+     "k": "Corki",
+     "v": "100.0%",
+     "s": "3 games"
+    },
     {
      "k": "Cassiopeia",
      "v": "85.7%",
@@ -49,11 +54,6 @@
     },
     {
      "k": "Ahri",
-     "v": "75.0%",
-     "s": "4 games"
-    },
-    {
-     "k": "Zaahen",
      "v": "75.0%",
      "s": "4 games"
     },
@@ -74,11 +74,6 @@
      "s": "5 games"
     },
     {
-     "k": "Ornn",
-     "v": "4.5",
-     "s": "4 games"
-    },
-    {
      "k": "Leona",
      "v": "4.3",
      "s": "4 games"
@@ -86,12 +81,17 @@
     {
      "k": "Alistar",
      "v": "3.9",
-     "s": "14 games"
+     "s": "15 games"
     },
     {
      "k": "Naafiri",
      "v": "3.8",
      "s": "4 games"
+    },
+    {
+     "k": "Ornn",
+     "v": "3.6",
+     "s": "5 games"
     }
    ]
   },
@@ -110,11 +110,6 @@
      "s": "5 games"
     },
     {
-     "k": "Wei",
-     "v": "9.40",
-     "s": "3 games"
-    },
-    {
      "k": "Bin",
      "v": "9.00",
      "s": "3 games"
@@ -123,6 +118,11 @@
      "k": "ShowMaker",
      "v": "9.00",
      "s": "4 games"
+    },
+    {
+     "k": "Keria",
+     "v": "8.25",
+     "s": "5 games"
     }
    ]
   },
@@ -172,11 +172,6 @@
      "s": "3 games"
     },
     {
-     "k": "Isles",
-     "v": "90.0%",
-     "s": "5 games"
-    },
-    {
      "k": "Knight",
      "v": "89.4%",
      "s": "3 games"
@@ -184,6 +179,11 @@
     {
      "k": "CoreJJ",
      "v": "87.9%",
+     "s": "4 games"
+    },
+    {
+     "k": "Ackerman",
+     "v": "86.3%",
      "s": "4 games"
     }
    ]
@@ -226,14 +226,14 @@
   {
    "group": "Events",
    "q": "How many unique champions will be picked?",
-   "ans": "97",
+   "ans": "98",
    "sub": "so far"
   },
   {
    "group": "Events",
    "q": "More games before or after 32 minutes?",
    "ans": "After",
-   "sub": "24 under 32 | 29 at 32 or more"
+   "sub": "26 under 32 | 30 at 32 or more"
   },
   {
    "group": "Events",
